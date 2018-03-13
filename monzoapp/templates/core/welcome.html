@@ -1,0 +1,20 @@
+
+<html>
+  <head>
+    <title>Your Monzo Account</title>
+    <style type=text/css>
+      td  { vertical-align: top; padding: 0.5em }
+      img { border:0 }
+    </style>
+  </head>
+  <body>
+    <table border=1>
+      {% for item in accounts %}
+      <tr><td>{{ item|safe }}</td><td><a href="{% url 'transactions' item.id %}">transactions</a></td></tr>
+      {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+      <p><a href="{% url 'logout' %}">logout</a></p>
+    {% endif %}
+  </body>
+</html>
